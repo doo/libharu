@@ -45,6 +45,11 @@ endif(MSVC)
 set(LIBHPDF_NAME ${LIBHPDF_NAME}hpdf)
 set(LIBHPDF_NAME_STATIC ${LIBHPDF_NAME}s)
 
+if (APPLE)
+  set(LIBHPDF_SHARED NO)
+endif()
+
+
 # =======================================================================
 # command line options
 # =======================================================================
@@ -52,6 +57,10 @@ option(LIBHPDF_SHARED "Build shared lib" YES)
 option(LIBHPDF_STATIC "Build static lib" YES)
 option(LIBHPDF_EXAMPLES "Build libharu examples" NO)
 option(DEVPAK "Create DevPackage" NO)
+
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+  set(CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS "${CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS} -undefined dynamic_lookup")
+endif()
 
 # Enable exceptions on linux if required
 # (eg if you are using libharu in a C++ environment,
