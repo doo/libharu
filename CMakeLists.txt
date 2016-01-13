@@ -45,10 +45,6 @@ endif(MSVC)
 set(LIBHPDF_NAME ${LIBHPDF_NAME}hpdf)
 set(LIBHPDF_NAME_STATIC ${LIBHPDF_NAME}s)
 
-if (APPLE)
-  set(LIBHPDF_SHARED NO)
-endif()
-
 
 # =======================================================================
 # command line options
